@@ -4,6 +4,6 @@ class StorageKey {
 
   static const String language = 'language';
   static const String themeMode = 'theme_mode';
-  static const String notificationEnabled = 'notification_enabled';
+  static const String notificationsEnabled = 'notification_enabled';
 
 }

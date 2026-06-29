@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecomerceapp/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:ecomerceapp/features/auth/domain/usecases/is_logged_in_usecase.dart';
 import 'package:ecomerceapp/features/auth/domain/usecases/get_current_user_usecase.dart';
-import 'package:ecomerceapp/features/auth/presentation/bloc/auth_event.dart';
-import 'package:ecomerceapp/features/auth/presentation/bloc/auth_state.dart';
+import 'auth_event.dart';
+import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LogoutUsecase logoutUseCase;
@@ -27,18 +27,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthUnauthenticated());
   }
 
-  Future<void> _onCheckSessionRequested(
-  CheckSessionRequested event,
-  Emitter<AuthState> emit,
-) async {
-  if (isLoggedInUseCase()) {
-    final user = getCurrentUserUseCase();
-    emit(AuthAuthenticated(
-      email: user?.email,
-      fullName: user?.fullName, 
-    ));
-  } else {
-    emit(AuthUnauthenticated());
+  void _onCheckSessionRequested(
+    CheckSessionRequested event,
+    Emitter<AuthState> emit,
+  ) {
+    if (isLoggedInUseCase()) {
+      final user = getCurrentUserUseCase();
+      emit(AuthAuthenticated(
+        email: user?.email,
+        fullName: user?.fullName,
+      ));
+    } else {
+      emit(AuthUnauthenticated());
+    }
   }
-}
 }

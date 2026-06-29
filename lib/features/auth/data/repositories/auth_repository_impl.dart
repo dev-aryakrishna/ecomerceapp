@@ -40,9 +40,10 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   bool get isLoggedIn => remoteDataSource.getCurrentSession() != null;
 
-  @override
-   UserEntity? get currentUser {
-    final user = remoteDataSource.getCurrentUser();
-    return user;
-  }
+ @override
+UserEntity? get currentUser {
+  final user = remoteDataSource.getCurrentUser();
+  if (user == null) return null;
+  return UserModel.fromSupabaseUser(user);
+}
 }
