@@ -29,6 +29,7 @@ import 'package:ecomerceapp/core/utils/notification_service.dart';
 import 'package:ecomerceapp/core/localization/localization_service.dart'; 
 import 'package:ecomerceapp/core/themes/theme_service.dart';
 
+
 final sl = GetIt.instance;
 
 Future<void> configureDependencies() async {
@@ -85,6 +86,7 @@ Future<void> configureDependencies() async {
     () => ProductsBloc(
       getProductsUsecase: sl<GetProductUsecase>(),
       searchProductsUsecase: sl<SearchProductUsecase>(),
+      getProductByCategoryUsecase: sl<GetProductsByCategoriesUsecase>(),
     ),
   );
   sl.registerFactory<CategoriesBloc>(
