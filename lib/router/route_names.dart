@@ -1,3 +1,4 @@
+
 class RouteNames {
   RouteNames._();
 
@@ -13,4 +14,6 @@ class RouteNames {
   static const orders = '/orders';
   static const account = '/account';
   static const settings = '/settings';
+
+
 }
